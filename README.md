@@ -4,7 +4,7 @@
  
  <h2><b>Funcionalidades</b></h2>
  <h3><b>- Opções de Seleção de Caracteres</b></h3>
- <img src="images/menu.png" width="300"/>
+ <img src="images/selecaomenu.png" width="300"/>
  <p>Permite aos usuários escolher quais tipos de caracteres incluir na senha: letras maiúsculas, letras minúsculas, números e caracteres especiais.</p>
  
  <h3><b>- Comprimento da Senha Personalizável</b></h3>
