@@ -1,73 +1,80 @@
 import random
+import time
 from interface import *
 
-# Função para gerar a senha
-def generatePassword(tiposEscolhidos, tamanhoSenha):
-    senha = []  # Lista para armazenar os caracteres da senha
-    listaCaracteres = [  # Lista de listas contendo os caracteres possíveis para a senha
-        ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],  # Letras minúsculas
-        ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],  # Letras maiúsculas
-        ['!', '@', '#', '$', '%', '&', '*', '+', '=', '?'],  # Caracteres especiais
-        [1,2,3,4,5,6,7,8,9,0]  # Números
+
+# Function to generate a random password
+def generatePassword(selectedTypes, passwordLength):
+    password = []  # List to store the password
+    characterList = [  # List of character types
+        ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],  # Lowercase letters
+        ['!', '@', '#', '$', '%', '&', '*', '+', '=', '?'],  # Special characters
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]  # Numbers
     ]
 
-    # Loop até que a senha atinja o tamanho desejado
-    while len(senha) < int(tamanhoSenha):
-        if '1' in tiposEscolhidos:  # Se o usuário escolheu números
-            senha.append(str(random.choice(listaCaracteres[3])))  # Adiciona um número à senha
-        if '2' in tiposEscolhidos:  # Se o usuário escolheu letras maiúsculas
-            senha.append(random.choice(listaCaracteres[1]))  # Adiciona uma letra maiúscula à senha
-        if '3' in tiposEscolhidos:  # Se o usuário escolheu letras minúsculas
-            senha.append(str(random.choice(listaCaracteres[0])))  # Adiciona uma letra minúscula à senha
-        if '4' in tiposEscolhidos:  # Se o usuário escolheu caracteres especiais
-            senha.append(random.choice(listaCaracteres[2]))  # Adiciona um caractere especial à senha
+    # Loop to generate the password based on the user's choice and password size
+    while len(password) < int(passwordLength):
+        if '1' in selectedTypes:  # If the user chose numbers
+            password.append(str(random.choice(characterList[2])))  # Add a number to the password
+        if '2' in selectedTypes:  # If the user chose uppercase letters
+            password.append(random.choice(characterList[0]).upper())  # Add an uppercase letter to the password
+        if '3' in selectedTypes:  # If the user chose lowercase letters
+            password.append(str(random.choice(characterList[0])))  # Add a lowercase letter to the password
+        if '4' in selectedTypes:  # If the user chose special characters
+            password.append(random.choice(characterList[1]))  # Add a special character to the password
 
-    random.shuffle(senha)  # Embaralha os caracteres da senha para aumentar a segurança
-    
-    return ''.join(senha)  # Retorna a senha como uma string
+    random.shuffle(password)  # Shuffle the characters in the password for added security
 
-# Função para obter a escolha do usuário
+    return ''.join(password)  # Return the password as a string
+
+
+# Function to get the user's choice
 def getUserChoice():
-    header('GERADOR DE SENHA')  # Exibe o cabeçalho
-    menu('Números',  # Exibe o menu de opções
-         'Letras Maiúsculas',
-         'Letras Minúsculas',
-         'Caracteres Especiais',
-         'FINALIZAR')
-    
-    tiposEscolhidos = []  # Lista para armazenar os tipos de caracteres escolhidos pelo usuário
-    opcoes = {'1': 'Números', '2': 'Letras Maiúsculas', '3': 'Letras Minúsculas', '4': 'Caracteres Especiais', '5': 'FINALIZAR'}
+    header('PASSWORD GENERATOR')  # Display the header
+    menu('Numbers',  # Display the menu options
+         'Uppercase Letters',
+         'Lowercase Letters',
+         'Special Characters',
+         'FINISH')
+
+    selectedTypes = []  # List to store the types of characters chosen by the user
+    options = {'1': 'Numbers', '2': 'Uppercase Letters', '3': 'Lowercase Letters', '4': 'Special Characters',
+               '5': 'FINISH'}
 
     while True:
-        caracterEscolhido = input('DIGITE O NÚMERO DO CARACTER QUE DESEJA: ')  # Pede ao usuário para escolher um tipo de caractere
-        if caracterEscolhido not in opcoes:  # Verifica se a escolha é válida
-            print('OPÇÃO INVÁLIDA! TENTE NOVAMENTE!')  # Mensagem de erro para escolha inválida
-            clearConsole(0.75)  # Limpa o console após 0,75 segundos
+        chosenCharacter = input(
+            'ENTER THE NUMBER OF THE CHARACTER YOU WANT: ')  # Ask the user to choose a character type
+        if chosenCharacter not in options:  # Check if the choice is valid
+            print('INVALID OPTION! TRY AGAIN!')  # Error message for invalid choice
+            clearConsole(0.75)  # Clear the console after 0.75 seconds
             continue
-        
-        if caracterEscolhido == '5':  # Se o usuário escolheu finalizar
-            line()  # Exibe uma linha no console
-            tamanhoSenha = input('DIGITE O TAMANHO DA SENHA: ')  # Pede ao usuário para digitar o tamanho da senha
-            print('CARREGANDO', end='')  # Mensagem de carregamento
+
+        if chosenCharacter == '5':  # If the user chose to finish
+            line()  # Display a line in the console
+            passwordLength = input('ENTER THE PASSWORD LENGTH: ')  # Ask the user to enter the password length
+            print('LOADING', end='')  # Loading message
             for i in range(3):
                 time.sleep(0.45)
-                print('.', end='')  # Exibe pontos de carregamento
-            break  # Sai do loop
+                print('.', end='')  # Display loading dots
+            break  # Exit the loop
         else:
-            tiposEscolhidos.append(caracterEscolhido)  # Adiciona a escolha do usuário à lista
-    
-    return tiposEscolhidos, tamanhoSenha  # Retorna os tipos de caracteres escolhidos e o tamanho da senha
+            selectedTypes.append(chosenCharacter)  # Add the user's choice to the list
 
-# Função principal para gerar a senha
+    return selectedTypes, passwordLength  # Return the selected character types and the password length
+
+
+# Main function to generate the password
 def getPassword():
-    tiposEscolhidos, tamanhoSenha = getUserChoice()  # Obtém a escolha do usuário
-    senha = generatePassword(tiposEscolhidos, tamanhoSenha)  # Gera a senha com base na escolha do usuário
-    
-    clearConsole()  # Limpa o console
-    line()  # Exibe uma linha no console
-    print('SENHA GERADA ALEATORIAMENTE'.center(42))  # Exibe mensagem centralizada
-    print(f'{senha}'.center(42))  # Exibe a senha centralizada
-    line()  # Exibe uma linha no console
+    selectedTypes, passwordLength = getUserChoice()  # Get the user's choice
+    password = generatePassword(selectedTypes, passwordLength)  # Generate the password based on the user's choice
+
+    clearConsole()  # Clear the console
+    line()  # Display a line in the console
+    print('RANDOMLY GENERATED PASSWORD'.center(42))  # Display a centered message
+    print(f'{password}'.center(42))  # Display the centered password
+    line()  # Display a line in the console
+
 
 if __name__ == "__main__":
-    getPassword()  # Chama a função principal para gerar a senha se o script for executado diretamente
+    getPassword()  # Call the main function to generate the password if the script is run directly
