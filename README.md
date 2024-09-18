@@ -2,22 +2,16 @@
 
 This project is a simple password generator tool. It allows users to generate passwords based on their preferences, including options for lowercase letters, uppercase letters, special characters, and numbers.
 
+## Features
+
+- **Password Generation:** Generate random passwords with customizable character types and length.
+- **User Choice:** Select from lowercase letters, uppercase letters, special characters, and numbers.
+- **Terminal Interface:** Provides clear and formatted terminal output for user interactions.
+
 ## Files
 
-### `main.py`
-
-Contains the main functionality of the password generator:
-- **`generatePassword(selectedTypes, passwordLength)`**: Generates a random password based on selected character types and length.
-- **`getUserChoice()`**: Prompts the user to select character types and password length.
-- **`getPassword()`**: Calls `getUserChoice()` to get user preferences and generates the password.
-
-### `interface.py`
-
-Provides utility functions for formatting the terminal:
-- **`line(size = 42)`**: Prints a line of equal signs (`=`) with a default size of 42 characters.
-- **`menu(*options, topline = True, bottomline = True, size = 42)`**: Prints a menu with numbered options, with optional top and bottom lines.
-- **`header(title, topline = True, bottomline = True, size = 42)`**: Prints a centered header with optional top and bottom lines.
-- **`clearConsole(cooldown = 1)`**: Clears the console screen after a specified delay.
+- **`main.py`:** Contains the core functionality for generating passwords based on user preferences.
+- **`interface.py`:** Includes utility functions for formatting terminal output.
 
 ## How to Use
 
