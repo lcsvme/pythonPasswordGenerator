@@ -1,17 +1,49 @@
-<div align="center">
- <h1><b>Gerador de Senhas em Python</b></h1>
- <p>Este projeto é um gerador de senhas escrito em Python, projetado para criar senhas fortes e seguras de forma rápida e fácil. Ele oferece uma interface simples e intuitiva, permitindo que os usuários personalizem a complexidade e o comprimento das senhas geradas. Ideal para quem precisa de senhas únicas e robustas para proteger suas contas e dados pessoais.</p>
- 
- <h2><b>Funcionalidades</b></h2>
- <h3><b>- Opções de Seleção de Caracteres</b></h3>
- <img src="images/selecaomenu.png" width="300"/>
- <p>Permite aos usuários escolher quais tipos de caracteres incluir na senha: letras maiúsculas, letras minúsculas, números e caracteres especiais.</p>
- 
- <h3><b>- Comprimento da Senha Personalizável</b></h3>
- <img src="images/passwordLength.png" width="300"/>
- <p>Os usuários podem especificar o comprimento desejado da senha para atender aos requisitos específicos de segurança.</p>
- 
- <h3><b>- Geração Aleatória de Senhas</b></h3>
- <img src="images/password.png" width="300"/>
- <p>Gera uma senha completamente aleatória a cada vez, garantindo que nenhuma senha seja igual a outra.</p>
-</div>
+# Password Generator
+
+This project is a simple password generator tool. It allows users to generate passwords based on their preferences, including options for lowercase letters, uppercase letters, special characters, and numbers.
+
+## Files
+
+### `main.py`
+
+Contains the main functionality of the password generator:
+- **`generatePassword(selectedTypes, passwordLength)`**: Generates a random password based on selected character types and length.
+- **`getUserChoice()`**: Prompts the user to select character types and password length.
+- **`getPassword()`**: Calls `getUserChoice()` to get user preferences and generates the password.
+
+### `interface.py`
+
+Provides utility functions for formatting the terminal:
+- **`line(size = 42)`**: Prints a line of equal signs (`=`) with a default size of 42 characters.
+- **`menu(*options, topline = True, bottomline = True, size = 42)`**: Prints a menu with numbered options, with optional top and bottom lines.
+- **`header(title, topline = True, bottomline = True, size = 42)`**: Prints a centered header with optional top and bottom lines.
+- **`clearConsole(cooldown = 1)`**: Clears the console screen after a specified delay.
+
+## How to Use
+
+1. **Run the Application:**
+   - Execute `main.py` to start the password generator.
+
+2. **Select Character Types:**
+   - Follow the prompts to choose the types of characters you want in your password (lowercase letters, uppercase letters, special characters, numbers).
+
+3. **Set Password Length:**
+   - Enter the desired length for the password when prompted.
+
+4. **View Generated Password:**
+   - The application will display the generated password based on your selections.
+
+## Installation
+
+Clone the repository:
+```bash
+git clone https://github.com/lcsvme/pythonPasswordGenerator.git
+```
+
+## Contributions
+
+Contributions are welcome! If you have improvements or suggestions, feel free to open an issue or submit a pull request.
+
+## Credits
+
+Made with love by [Luan Vieira](https://github.com/lcsvme). Check out my other projects on GitHub!
